@@ -1,1 +1,101 @@
 
+h3 {
+	text-align:center;
+}
+
+div {
+	text-align: center;
+}
+.header {
+
+}
+.navigator {
+	text-align: center;
+
+
+}
+
+.navButtons {
+	display: inline;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.textInput {
+
+}
+
+.submitButton {
+
+}
+
+#typeE {
+
+}
+
+#topPrev {
+
+}
+
+#btmPrev {
+
+}
+
+#topNxt {
+
+}
+
+#btmNxt {
+
+}
+
+#typeHeader {
+
+}
+
+#getBrandE {
+
+}
+
+#getIdE {
+
+}
+
+#submitBrand {
+
+}
+
+#brand {
+
+}
+
+#identifier {
+
+}
+
+#accessories {
+
+}
+
+#accessoryList {
+
+}
+
+#tests {
+
+}
+
+#testList {
+
+}
+
+#codeGenerator {
+
+}
+
+#getCode {
+
+}
+
+

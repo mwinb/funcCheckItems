@@ -14,27 +14,32 @@
 </head>
 
 <body>
-	<div id='typeE'>
-		<div class='Navigator'>
-			<button class='navButtons' id='topPrev'>Previous</button>
-			<h3 id='typeHeader' class='header'></h3>
-			<button class='navButtons' id='topNxt'>Next</button>
-		</div>
-
-		<div id='getBrandE'>
-			<div class='textInput'>
-				<input type='text' name='Brand' id='brand'>
-				<div id='submitBrand' class='submitButton'>Submit</div>
-			</div>
-		</div>
-
-		<div id='getIdE'>
-			<div class='textInput'>
-				<input type='text' name='Identifier (model,s/n,LP)' id='idenfier#'>
-				<div id='submitBrand' class='submitButton'>Submit</div>
-			</div>
-		</div>
+	<div id='inputCode'>
+		<h3>Submit Code Here</h3>
+		<input type='text' name='Input Code'>
+		<button id='submitCode'>Submit Code</button>
 	</div>
+	
+	<div class='navigator'>
+		<h3>Change Type</h3>
+		<h3 id='typeHeader' >Type of Device</h3>
+		<button class='navButtons' id='topNxt'>Next</button>
+		<button class='navButtons' id='topPrev'>Previous</button>
+	</div>
+
+
+	<div id='getBrandE'>
+		<h3>Brand</h3>
+		<input type='text' name='Brand' id='brand'>
+		<button id='submitBrand' class='submitButton'>Submit</button>
+	</div>
+
+	<div id='getIdE'>
+		<h3>Model#/SN#/LP#</h3>
+		<input type='text' name='Identifier (model,s/n,LP)' id='identifier'>
+		<button id='submitBrand' class='submitButton'>Submit</button>
+	</div>
+
 
 	<div id='accessories' class='header'>
 		<h3>Accessories</h3>
@@ -49,11 +54,15 @@
 	</div>
 
 	<div id='codeGenerator' class='header'>
-		<div id='getCode'>Get Code</div>
+		<button id='getCode'>Get Code</button>
 	</div>
-	<div>
+
+	<div class='navigator'>
+		<h3>Change Type</h3>
+		<h3 id='typeFooter'>Type of Device</h3>
 		<button class='navButtons' id='btmPrev'> Previous </button>
 		<button class='navButtons' id='btmNxt'> Next </button>
+
 	</div>
 
 </body>
