@@ -1,101 +1,71 @@
 
-h3 {
-	text-align:center;
+body {
+	background-color: black;
 }
-
 div {
 	text-align: center;
+	border-width-top: 5px;
+	border-style: solid;
+	background-color: black;
+	border-color: coral;
+	margin-bottom: 2%;
+	box-shadow: 10px 10px 5px 0px slategrey;
 }
-.header {
 
-}
-.navigator {
+h1,h2,h3,h4 {
+	color: white;
 	text-align: center;
 
+}
+
+.divList {
+	padding: 5%;
+	border:none;
+	box-shadow: none;
+}
+.buttons {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	width: 35%;
+	font-size: 40%;
+	background-color: slategrey;
+	border-color: grey;
+	color: white;
+	margin-bottom: 1%;
+	box-shadow: 10px 10px 5px 0px coral;
+
 
 }
 
-.navButtons {
-	display: inline;
+#titleHeader {
+
+}
+
+#devices {
+
+}
+
+#newDevice {
+
+}
+
+#createNewDevice {
+	margin-top: 1%;
+	border: none;
+	box-shadow: none;
+
+}
+
+#createFromCode {
+	border: none;
+	box-shadow:none;
+}
+
+#buttonNewDevice {
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 
 }
-
-.textInput {
-
-}
-
-.submitButton {
-
-}
-
-#typeE {
-
-}
-
-#topPrev {
-
-}
-
-#btmPrev {
-
-}
-
-#topNxt {
-
-}
-
-#btmNxt {
-
-}
-
-#typeHeader {
-
-}
-
-#getBrandE {
-
-}
-
-#getIdE {
-
-}
-
-#submitBrand {
-
-}
-
-#brand {
-
-}
-
-#identifier {
-
-}
-
-#accessories {
-
-}
-
-#accessoryList {
-
-}
-
-#tests {
-
-}
-
-#testList {
-
-}
-
-#codeGenerator {
-
-}
-
-#getCode {
-
-}
-
-
