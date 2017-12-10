@@ -1,12 +1,13 @@
 $(document).ready( function () {
 
 	var deviceList = [];
+	var deviceCodes = [];
 	var currentAccessories = [];
 	var deviceIndex;
 	var previousIndex;
 
 	$('#buttonNewTv').click(function () {
-		var tvAccessories = ["Factory Box", "Documentation","AC Adapter", "Stands", 
+		var tvAccessories = ["Factory Box", "Remote", "Documentation","AC Adapter", "Stands", 
 		"Screws", "HDMI", "Optical", "AV Cable"]
 		var tvButtons = [];
 
@@ -17,30 +18,60 @@ $(document).ready( function () {
 		var tvBrand = prompt('Enter Brand Name', 'Generic TV');
 		var tvModel = prompt('Enter Model Number', 'Model');
 
+		initilizeDevice("TV", tvBrand, tvModel, tvAccessories, tvButtons);
+
+	});
+
+	$('#buttonNewSoundBar').click(function () {
+		var sbAccessories = ["Factory Box", "Documentation","AC Adapter", "Remote",
+		"HDMI", "Optical", "AV Cable", "Aux Cable"]
+		var sbButtons = [];
+
+		for (var i = 0; i < sbAccessories.length; i++) {
+			sbButtons.push(newAccessoryButton(sbAccessories[i], i));
+		}
+
+		var sbBrand = prompt('Enter Brand Name', 'Generic Sound Bar');
+		var sbModel = prompt('Enter Model Number', 'Model');
+
+		initilizeDevice("Sound Bar", sbBrand, sbModel, sbAccessories, sbButtons);
+
+	});
+
+	var initilizeDevice = function(deviceType, brand, model, accessories, buttons) {
 		if(deviceIndex == null) {
 			deviceIndex = 0;
-			var newTV =  newDevice("TV", deviceIndex, tvBrand, tvModel, tvButtons);
-			deviceList.push(newTV);
+			var newDV =  newDevice(deviceType, deviceIndex, brand, model, accessories, buttons);
+			deviceList.push(newDV);
 			addButtons(deviceIndex);
+			
 			previousIndex = deviceIndex;
+			var newCode = deviceList[deviceIndex].getCode();
+			clearAccessoryButtons(deviceIndex);
+			deviceList[deviceIndex].setNewButtons();
+			deviceList[deviceIndex].setCode(newCode);
 			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
 			$(deviceList[deviceIndex].deviceButton.css('box-shadow', '10px 10px 5px 0px slategrey'));
 		}
 		else {
 			previousIndex = deviceIndex;
 			deviceIndex = deviceIndex + 1;
-			var newTV =  newDevice("TV", deviceIndex, tvBrand, tvModel, tvButtons);
+			var newTV =  newDevice(deviceType, deviceIndex, brand, model, accessories, buttons);
+			
 			deviceList.push(newTV);
 			clearAccessoryButtons(previousIndex);
-			console.log(deviceIndex);
 			addButtons(deviceIndex)
+			var newCode = deviceList[deviceIndex].getCode();
+			clearAccessoryButtons(deviceIndex);
+			deviceList[deviceIndex].setNewButtons();
+			deviceList[deviceIndex].setCode(newCode);
+			
 			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
 			$(deviceList[deviceIndex].deviceButton.css('box-shadow', '10px 10px 5px 0px slategrey'));
 			$(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
 			$(deviceList[previousIndex].deviceButton.css('box-shadow', '10px 10px 5px 0px coral'));
 		}
-
-	})
+	}
 
 	$('#buttonCode').click(function () {
 		if($('#oldCode').val() != '' && deviceIndex != null) {
@@ -79,14 +110,16 @@ $(document).ready( function () {
 				currentButton.css('background-color', 'slategrey');
 			}
 		}
+
 		for (var i =0; i < deviceList.length; i++) {
 			$('#devices').append(deviceList[i].deviceButton);
 		}
+
 		var currentButton = deviceList[currentIndex].deviceButton;
 		var deviceBrand = deviceList[currentIndex].name;
 		$('#brandTitle').html(deviceBrand);
 		$('#modelTitle').html(deviceList[currentIndex].model);
-		var newCode = tempDevice.getCode();
+		var newCode = tempDevice.code;
 		$('#currentCode').html(newCode);
 
 	}
@@ -105,8 +138,10 @@ $(document).ready( function () {
 			deviceIndex = Index;
 			$('#brandTitle').html(deviceName);
 			$('#modelTitle').html(deviceModel);
-			clearAccessoryButtons(previousIndex);
-			addButtons(deviceIndex);
+			
+			deviceList[deviceIndex].setNewButtons();
+			deviceList[deviceIndex].setCode(deviceList[deviceIndex].code);
+			
 			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
 			$(deviceList[deviceIndex].deviceButton.css('box-shadow', '10px 10px 5px 0px slategrey'));
 			$(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
@@ -118,23 +153,25 @@ $(document).ready( function () {
 	}
 
 	var newAccessoryButton = function (buttonValue, buttonIndex) {
-		var $btn = $('<button/>', {
+		var $btn = $('<input/>', {
 			id: 'accessory' + buttonIndex,
+			type: 'button',
+			value: buttonValue,
 			index: buttonIndex,
 			class: 'buttons',
 			clicked: 'false'
 		});
 
-		$($btn).html(buttonValue);
-
 		$($btn).on('click', function () {
 			if ($($btn).attr('clicked') == 'false') {
 				$($btn).attr('clicked', 'true');
 				$($btn).css('background-color', 'coral');
+				deviceList[deviceIndex].code = deviceList[deviceIndex].getCode();
 			}
-			else {
+			else if ($($btn).attr('clicked') == 'true') {
 				$($btn).attr('clicked', 'false');
 				$($btn).css('background-color', 'slategrey');
+				deviceList[deviceIndex].code = deviceList[deviceIndex].getCode();
 			}
 
 			var tempDevice = deviceList[deviceIndex];
@@ -148,7 +185,7 @@ $(document).ready( function () {
 
 
 	var newDevice = function (deviceType, deviceIndex,
-		deviceName, deviceModel, deviceAccessories) {
+		deviceName, deviceModel, deviceAccessories, deviceButtons) {
 		return {
 			type: deviceType,
 
@@ -158,9 +195,14 @@ $(document).ready( function () {
 
 			model: deviceModel,
 
-			accessoryButtons: deviceAccessories,
+			accessories: deviceAccessories,
+
+			accessoryButtons: deviceButtons,
 
 			deviceButton: newDeviceButton(deviceType, deviceIndex, deviceName, deviceModel),
+
+			code: '',
+
 
 			getCode: function () {
 				var newCode = "";
@@ -188,9 +230,21 @@ $(document).ready( function () {
 					}
 				}
 
+				this.code = newCode;
+
 				clearAccessoryButtons(deviceIndex);
 				addButtons(deviceIndex);
 
+
+			},
+
+			setNewButtons: function() {
+				this.accessoryButtons = [];
+				for (var i = 0; i < this.accessories.length; i++) {
+					this.accessoryButtons.push(newAccessoryButton(this.accessories[i]));
+				}
+
+				clearAccessoryButtons(previousIndex);
 
 			}
 
