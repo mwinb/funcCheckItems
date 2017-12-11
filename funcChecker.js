@@ -7,41 +7,84 @@ $(document).ready( function () {
 	var previousIndex;
 
 	$('#buttonNewTv').click(function () {
-		var tvAccessories = ["Factory Box", "Remote", "Documentation","AC Adapter", "Stands", 
-		"Screws", "HDMI", "Optical", "AV Cable"]
+		var tvAccessories = ["Factory Box", 'Hub', "Remote", "Documentation","AC Adapter", "Stands", 
+		"Screws", "HDMI", "Optical", "AV Cable", 'Func Check Done']
 		var tvButtons = [];
 
-		for (var i = 0; i < tvAccessories.length; i++) {
-			tvButtons.push(newAccessoryButton(tvAccessories[i], i));
-		}
-
-		var tvBrand = prompt('Enter Brand Name', 'Generic TV');
-		var tvModel = prompt('Enter Model Number', 'Model');
-
-		initilizeDevice("TV", tvBrand, tvModel, tvAccessories, tvButtons);
+		initilizeDevice("TV", tvAccessories, tvButtons);
 
 	});
 
 	$('#buttonNewSoundBar').click(function () {
 		var sbAccessories = ["Factory Box", "Documentation","AC Adapter", "Remote",
-		"HDMI", "Optical", "AV Cable", "Aux Cable"]
+		"HDMI", "Optical", "AV Cable", "Aux Cable", 'Func Check Done']
 		var sbButtons = [];
 
-		for (var i = 0; i < sbAccessories.length; i++) {
-			sbButtons.push(newAccessoryButton(sbAccessories[i], i));
-		}
-
-		var sbBrand = prompt('Enter Brand Name', 'Generic Sound Bar');
-		var sbModel = prompt('Enter Model Number', 'Model');
-
-		initilizeDevice("Sound Bar", sbBrand, sbModel, sbAccessories, sbButtons);
+		initilizeDevice("Sound Bar", sbAccessories, sbButtons);
 
 	});
 
-	var initilizeDevice = function(deviceType, brand, model, accessories, buttons) {
+	$('#buttonMediaPlayer').click(function () {
+		var mpAccessories = ['Factory Box','Documentation', 'Remote', 'Documentation', 'AC Adapter',
+		'HDMI', 'Func Check Done'];
+		var mpButtons = [];
+
+		initilizeDevice("Media Player",mpAccessories, mpButtons);
+	})
+
+	$('#buttonHeadPhones').click(function () {
+		var hpAccessories = ['Factory Box', 'Remote', 'Spare Ear Buds', 'Stand', 'AC adapter',
+		'Documentation', 'Func Check Done']
+
+		var hpButtons = [];
+
+		initilizeDevice("Head Phones", hpAccessories, hpButtons);
+	})
+
+	$('#buttonReciever').click(function () {
+		var rcAccessories = ['Factory Box', 'Documentation','Remote', 'AV Cables', 'Aux Cable',
+		'Optical Cable', 'HDMI', 'Speaker Cables', 'Func Check Done'];
+		var rcButtons = [];
+
+		initilizeDevice('Reciever', rcAccessories, rcButtons);
+	})
+
+	$('#buttonComputer').click(function () {
+		var pcAccessories = ['Factory Box', 'Documentation', 'Mouse', 'Keyboard',
+		'Pen', 'AC Adaper', 'Speaker/External Device', 'Func Check Done'];
+		var pcButtons = [];
+
+		initilizeDevice("Computer", pcAccessories, pcButtons);
+	})
+
+	$('#buttonTablet').click(function () {
+		var tbAccessories = ['Factory Box', 'Documentation', 'AC power Cord',
+		'USB Block', 'Pen', 'Func Check Done'];
+		var tbButtons = [];
+
+		initilizeDevice("Tablet", tbAccessories, tbButtons);
+	})
+
+	$('#buttonMisc').click(function () {
+		var mcAccesories = ['Factory Box', 'Charger', 'Remote', 'Documentation',
+		'Hub', 'HDMI', 'Pen', 'Speakers', 'SubWoofer', 'AV Cables', 'Aux Cable', 
+		'Optical Cable', 'SD Card', 'Hardware', 'Stands', 'Func Check Done'];
+		var mcButtons = [];
+
+		initilizeDevice("Miscellaneous Device", mcAccesories, mcButtons);
+	})
+
+	var initilizeDevice = function(deviceType,accessories, buttons) {
+		for (var i=0; i < accessories.length; i++) {
+			buttons.push(newAccessoryButton(accessories[i], i));
+		}
+
+		var deviceBrand = prompt("Enter Device Brand", "Brand");
+		var deviceModel = prompt("Enter Device Model", "Model#");
+
 		if(deviceIndex == null) {
 			deviceIndex = 0;
-			var newDV =  newDevice(deviceType, deviceIndex, brand, model, accessories, buttons);
+			var newDV =  newDevice(deviceType, deviceIndex, deviceBrand, deviceModel, accessories, buttons);
 			deviceList.push(newDV);
 			addButtons(deviceIndex);
 			
@@ -56,7 +99,7 @@ $(document).ready( function () {
 		else {
 			previousIndex = deviceIndex;
 			deviceIndex = deviceIndex + 1;
-			var newTV =  newDevice(deviceType, deviceIndex, brand, model, accessories, buttons);
+			var newTV =  newDevice(deviceType, deviceIndex, deviceBrand, deviceModel, accessories, buttons);
 			
 			deviceList.push(newTV);
 			clearAccessoryButtons(previousIndex);
@@ -87,9 +130,6 @@ $(document).ready( function () {
 		else {
 			alert("Error. Make Sure Code Entered is Valid");
 		}
-
-
-
 	})
 
 
@@ -106,8 +146,10 @@ $(document).ready( function () {
 			$('#devicesButtons').append(currentButton);
 			if(currentButton.attr('clicked') == 'true') {
 				currentButton.css('background-color', 'coral');
+				currentButton.css('box-shadow', '10px 10px 5px 0px slategrey');
 			} else {
 				currentButton.css('background-color', 'slategrey');
+				currentButton.css('box-shadow', '10px 10px 5px 0px coral');
 			}
 		}
 
@@ -166,11 +208,13 @@ $(document).ready( function () {
 			if ($($btn).attr('clicked') == 'false') {
 				$($btn).attr('clicked', 'true');
 				$($btn).css('background-color', 'coral');
+				$($btn).css('box-shadow', '10px 10px 5px 0px slategrey');
 				deviceList[deviceIndex].code = deviceList[deviceIndex].getCode();
 			}
 			else if ($($btn).attr('clicked') == 'true') {
 				$($btn).attr('clicked', 'false');
 				$($btn).css('background-color', 'slategrey');
+				$($btn).css('box-shadow', '10px 10px 5px 0px coral');
 				deviceList[deviceIndex].code = deviceList[deviceIndex].getCode();
 			}
 
@@ -250,10 +294,4 @@ $(document).ready( function () {
 
 		}  
 	}
-
-
-
-
-
-
 })

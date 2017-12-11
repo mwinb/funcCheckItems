@@ -5,6 +5,7 @@
 	<!-- Functionality Checker -->
 	<!-- Created by Michael Winberry -->
 	<!-- Created 12/9/17 -->
+	<meta name=viewport content='width=187'>
 	<meta charset = "UTF-8">
 	<link href='funcChecker.css' media='screen' type='text/css' rel='stylesheet' />
 	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
@@ -15,22 +16,25 @@
 
 <body>
 	<h1>Accessory Checklist</h1>
+	<div id='currenDeviceList'>
+		<div id='devices'>
+			<h1>Current Devices</h1>
 
-	<div id='devices'>
-		<h1>Current Devices</h1>
-
+		</div>
 	</div>
-
 	
 	<div id='newDevice'>
 		<h1>Create New Device</h1>
 
 		<div id='createNewDevice' >
-			<button id='buttonNewTv' class='buttons'> Create New TV</button>
+			<button id='buttonComputer' class='buttons'>New Computer</button>
+			<button id='buttonTablet' class='buttons'>New Tablet</button>
+			<button id='buttonNewTv' class='buttons'> New TV</button>
 			<button id='buttonNewSoundBar' class='buttons'>New Sound Bar</button>
 			<button id='buttonMediaPlayer' class='buttons'>New Media Player</button>
 			<button id='buttonHeadPhones' class='buttons'>New Head Phones</button>
 			<button id='buttonReciever' class='buttons'>New Reciever</button>
+			<button id='buttonMisc' class='buttons'>New Misc </button>
 			<h1>
 			</h1>
 

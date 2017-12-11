@@ -1,7 +1,14 @@
 
 body {
 	background-color: black;
+	word-wrap: break-word;
 }
+#devices {
+	border: none;
+	box-shadow: none;
+	padding-bottom: 1%;
+}
+
 div {
 	text-align: center;
 	border-width-top: 5px;
@@ -27,9 +34,9 @@ h1,h2,h3,h4 {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	height: 50px;
-	width: 35%;
-	font-size: 40%;
+	max-height: 100%;
+	max-width: 100%;
+	font-size: 75%;
 	background-color: slategrey;
 	border-color: grey;
 	color: white;
@@ -39,17 +46,6 @@ h1,h2,h3,h4 {
 
 }
 
-#titleHeader {
-
-}
-
-#devices {
-
-}
-
-#newDevice {
-
-}
 
 #createNewDevice {
 	margin-top: 1%;
