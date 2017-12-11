@@ -16,12 +16,6 @@
 
 <body>
 	<h1>Accessory Checklist</h1>
-	<div id='currenDeviceList'>
-		<div id='devices'>
-			<h1>Current Devices</h1>
-
-		</div>
-	</div>
 	
 	<div id='newDevice'>
 		<h1>Create New Device</h1>
@@ -42,7 +36,7 @@
 
 
 		<div id='createFromCode' >
-			<h3>Insert Code</h3>
+			<h3>Add Code After Creating Device</h3>
 			<input type='text' id='oldCode' placeholder=''>
 			<button id='buttonCode' >Submit Code</button>
 			<h1>
@@ -51,13 +45,18 @@
 		</div>
 	</div>
 
+	<div id='currenDeviceList'>
+		<div id='devices'>
+			<h1>Current Devices</h1>
 
-
-	<div id='displayCode'>
-		<h1>Code</h1>
-		<h3 id='currentCode'></h3>
+		</div>
 	</div>
 
+	<div id='displayCode'>
+		<h1>Current Code</h1>
+		<h3 id='currentCode'></h3>
+	</div>
+	
 	<div id='displayBrand'>
 		<h1> Device Brand </h1>
 		<h2 id='brandTitle'></h2>
@@ -73,8 +72,6 @@
 		<div id='devicesButtons'class='divList'> 
 		</div>
 	</div>
-
-
 
 </body>
 
