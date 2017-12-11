@@ -1,3 +1,5 @@
+//funcCheckList
+//CREATED BY MICHAEL WINBERRY
 $(document).ready( function () {
 
 	var deviceList = [];
