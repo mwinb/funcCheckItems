@@ -195,7 +195,7 @@ $(document).ready( function () {
 	}
 
 	var newAccessoryButton = function (buttonValue, buttonIndex) {
-		var $btn = $('<input/>', {
+		var $btn = $('<button/>', {
 			id: 'accessory' + buttonIndex,
 			type: 'button',
 			value: buttonValue,
@@ -203,6 +203,8 @@ $(document).ready( function () {
 			class: 'buttons',
 			clicked: 'false'
 		});
+
+		$($btn).html(buttonValue);
 
 		$($btn).on('click', function () {
 			if ($($btn).attr('clicked') == 'false') {
