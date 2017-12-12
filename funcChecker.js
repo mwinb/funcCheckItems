@@ -72,56 +72,7 @@ $(document).ready( function () {
 		initilizeDevice("Miscellaneous Device", mcAccesories);
 	});
 
-	var initilizeDevice = function(deviceType,accessories) 
-	{
-		var buttons = [];
-		for (var i=0; i < accessories.length; i++) 
-		{
-			buttons.push(newAccessoryButton(accessories[i], i));
-		}
-
-		var deviceBrand = prompt("Enter Device Brand", "Brand");
-		var deviceModel = prompt("Enter Device Model", "Model#");
-
-		if(deviceIndex == null) 
-		{
-			deviceIndex = 0;
-			var newDV =  newDevice(deviceType, deviceIndex, deviceBrand, deviceModel, accessories, buttons);
-			deviceList.push(newDV);
-			
-			previousIndex = deviceIndex;
-			var newCode = deviceList[deviceIndex].getCode();
-
-			deviceList[deviceIndex].setNewButtons();
-			deviceList[deviceIndex].setCode(newCode);
-
-			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
-		}
-		else 
-		{
-			previousIndex = deviceIndex;
-			
-			deviceIndex = deviceIndex + 1;
-			
-			var newDV =  newDevice(deviceType, deviceIndex, deviceBrand, deviceModel, accessories, buttons);
-			
-			deviceList.push(newDV);
-			
-			clearAccessoryButtons(previousIndex);
-
-			var newCode = deviceList[deviceIndex].getCode();
-
-			clearAccessoryButtons(deviceIndex);
-
-			deviceList[deviceIndex].setNewButtons();
-			deviceList[deviceIndex].setCode(newCode);
-			
-			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
-			$(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
-		}
-	}
-
-	$('#buttonCode').click(function () 
+		$('#buttonCode').click(function () 
 	{
 		if( $('#oldCode').val() != '' && deviceIndex != null ) 
 		{
@@ -142,7 +93,63 @@ $(document).ready( function () {
 		{
 			alert("Error. Make Sure Code Entered is Valid");
 		}
-	})
+	});
+
+	var initilizeDevice = function(deviceType, accessories) 
+	{
+		var buttons = [];
+		for (var i=0; i < accessories.length; i++) 
+		{
+			buttons.push(newAccessoryButton(accessories[i], i));
+		}
+
+		if($('#nameInput').val() != "") 
+		{
+			var deviceName = $('#nameInput').val();
+			$('#nameInput').val('');
+		}
+		else
+		{
+			var deviceName = "Generic " + deviceType;
+		}
+
+		if(deviceIndex == null) 
+		{
+			deviceIndex = 0;
+			var newDV =  newDevice(deviceType, deviceIndex, deviceName, accessories, buttons);
+			deviceList.push(newDV);
+			
+			previousIndex = deviceIndex;
+			var newCode = deviceList[deviceIndex].getCode();
+
+			deviceList[deviceIndex].setNewButtons();
+			deviceList[deviceIndex].setCode(newCode);
+
+			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
+		}
+		else 
+		{
+			previousIndex = deviceIndex;
+			
+			deviceIndex = deviceList.length;
+			
+			var newDV =  newDevice(deviceType, deviceIndex, deviceName, accessories, buttons);
+			
+			deviceList.push(newDV);
+			
+			clearAccessoryButtons(previousIndex);
+
+			var newCode = deviceList[deviceIndex].getCode();
+
+			clearAccessoryButtons(deviceIndex);
+
+			deviceList[deviceIndex].setNewButtons();
+			deviceList[deviceIndex].setCode(newCode);
+			
+			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
+			$(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
+		}
+	}
 
 
 	var clearAccessoryButtons = function (prevIndex) 
@@ -178,32 +185,31 @@ $(document).ready( function () {
 		}
 
 		var currentButton = deviceList[currentIndex].deviceButton;
-		var deviceBrand = deviceList[currentIndex].name;
-		$('#brandTitle').html(deviceBrand);
-		$('#modelTitle').html(deviceList[currentIndex].model);
+		var deviceName = deviceList[currentIndex].name;
+		
+		$('#nameTitle').html(deviceName);
+		
 		var newCode = tempDevice.code;
 		var hexCode = parseInt(newCode, 2).toString(16).toUpperCase();
+		
 		$('#currentCode').html(hexCode);
 
 	}
 
 
-	var newDeviceButton = function(deviceType, Index, deviceName, deviceModel) 
+	var newDeviceButton = function(deviceType, Index, deviceName) 
 	{
-		var $btn = $('<button/>', 
-		{
+		var $btn = $('<button/>', {
 			id: deviceType + Index,
 			class: 'buttons'
 		});
 
-		$($btn).html(deviceType + " " + deviceName + " " + deviceModel + " " + Index);
+		$($btn).html(deviceType + " " + deviceName + " " + Index);
 
-		$($btn).on('click', function () 
-		{
+		$($btn).on('click', function () {
 			previousIndex = deviceIndex;
 			deviceIndex = Index;
-			$('#brandTitle').html(deviceName);
-			$('#modelTitle').html(deviceModel);
+			$('#nameTitle').html(deviceName);
 			
 			deviceList[deviceIndex].setNewButtons();
 			deviceList[deviceIndex].setCode(deviceList[deviceIndex].code);
@@ -218,8 +224,7 @@ $(document).ready( function () {
 
 	var newAccessoryButton = function (buttonValue, buttonIndex) 
 	{
-		var $btn = $('<button/>', 
-		{
+		var $btn = $('<button/>', {
 			id: 'accessory' + buttonIndex,
 			type: 'button',
 			value: buttonValue,
@@ -246,8 +251,10 @@ $(document).ready( function () {
 			}
 
 			var tempDevice = deviceList[deviceIndex];
+			
 			var newCode = tempDevice.getCode();
 			var hexCode = parseInt(newCode, 2).toString(16).toUpperCase();
+			
 			$('#currentCode').html(hexCode);
 			
 		});
@@ -256,8 +263,7 @@ $(document).ready( function () {
 	}
 
 
-	var newDevice = function (deviceType, deviceIndex,
-		deviceName, deviceModel, deviceAccessories, deviceButtons) 
+	var newDevice = function (deviceType, deviceIndex, deviceName, deviceAccessories, deviceButtons) 
 	{
 		return {
 			type: deviceType,
@@ -266,13 +272,11 @@ $(document).ready( function () {
 
 			name: deviceName,
 
-			model: deviceModel,
-
 			accessories: deviceAccessories,
 
 			accessoryButtons: deviceButtons,
 
-			deviceButton: newDeviceButton(deviceType, deviceIndex, deviceName, deviceModel),
+			deviceButton: newDeviceButton(deviceType, deviceIndex, deviceName),
 
 			code: '',
 
