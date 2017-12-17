@@ -2,6 +2,12 @@
 //CREATED BY MICHAEL WINBERRY
 $(document).ready( function () {
 
+	$('#currentDeviceList').hide();
+	$('#devices').hide();
+	$('#displayCode').hide();
+	$('#displayName').hide();
+	$('#preDefAcc').hide();
+
 	var deviceList = [];
 	var currentAccessories = [];
 	var deviceIndex;
@@ -72,7 +78,7 @@ $(document).ready( function () {
 		initilizeDevice("Miscellaneous Device", mcAccesories);
 	});
 
-		$('#buttonCode').click(function () 
+	$('#buttonCode').click(function () 
 	{
 		if( $('#oldCode').val() != '' && deviceIndex != null ) 
 		{
@@ -97,6 +103,13 @@ $(document).ready( function () {
 
 	var initilizeDevice = function(deviceType, accessories) 
 	{
+		$('#currentDeviceList').show()
+		$('#devices').show()
+		$('#displayCode').show()
+		$('#displayName').show()
+		$('#preDefAcc').show()
+
+
 		var buttons = [];
 		for (var i=0; i < accessories.length; i++) 
 		{
@@ -224,7 +237,7 @@ $(document).ready( function () {
 
 	var newAccessoryButton = function (buttonValue, buttonIndex) 
 	{
-		var $btn = $('<button/>', {
+		var $btn = $('<input/>', {
 			id: 'accessory' + buttonIndex,
 			type: 'button',
 			value: buttonValue,
@@ -233,7 +246,7 @@ $(document).ready( function () {
 			clicked: 'false'
 		});
 
-		$($btn).html(buttonValue);
+		$($btn).val(buttonValue);
 
 		$($btn).on('click', function () 
 		{
