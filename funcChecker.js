@@ -139,6 +139,7 @@ $(document).ready( function () {
 			deviceList[deviceIndex].setCode(newCode);
 
 			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
+			$(deviceList[deviceIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px slategrey'));
 		}
 		else 
 		{
@@ -160,7 +161,9 @@ $(document).ready( function () {
 			deviceList[deviceIndex].setCode(newCode);
 			
 			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
+			$(deviceList[deviceIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px slategrey'));
 			$(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
+			$(deviceList[previousIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px coral'));
 		}
 	}
 
@@ -185,10 +188,13 @@ $(document).ready( function () {
 			if(currentButton.attr('clicked') == 'true') 
 			{
 				currentButton.css('background-color', 'coral');
+				currentButton.css('box-shadow', '5px 5px 5px 0px slategrey');
+
 			} 
 			else 
 			{
 				currentButton.css('background-color', 'slategrey');
+				currentButton.css('box-shadow', '5px 5px 5px 0px coral');
 			}
 		}
 
@@ -228,7 +234,9 @@ $(document).ready( function () {
 			deviceList[deviceIndex].setCode(deviceList[deviceIndex].code);
 			
 			$(deviceList[deviceIndex].deviceButton.css('background-color', 'coral'));
+			$(deviceList[deviceIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px slategrey'));
 			$(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
+			$(deviceList[previousIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px coral'));
 
 		});
 
@@ -254,12 +262,14 @@ $(document).ready( function () {
 			{
 				$($btn).attr('clicked', 'true');
 				$($btn).css('background-color', 'coral');
+				$($btn).css('box-shadow', '5px 5px 5px 0px slategrey');
 				deviceList[deviceIndex].code = deviceList[deviceIndex].getCode();
 			}
 			else if ($($btn).attr('clicked') == 'true') 
 			{
 				$($btn).attr('clicked', 'false');
 				$($btn).css('background-color', 'slategrey');
+				$($btn).css('box-shadow', '5px 5px 5px 0px coral');
 				deviceList[deviceIndex].code = deviceList[deviceIndex].getCode();
 			}
 
