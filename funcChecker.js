@@ -119,6 +119,10 @@ $(document).ready( function () {
         $('#preDefAcc').show()
         $('.border').show();
 
+        $('body').animate({
+            scrollTop: $("#devices").offset().top
+        }, 2000);
+
 
         var buttons = [];
         for (var i=0; i < accessories.length; i++) 
@@ -175,6 +179,7 @@ $(document).ready( function () {
             $(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
             $(deviceList[previousIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px coral'));
         }
+
     }
 
 
