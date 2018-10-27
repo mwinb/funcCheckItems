@@ -13,6 +13,7 @@ $(document).ready( function () {
     var currentAccessories = [];
     var deviceIndex;
     var previousIndex;
+ 
 
     $('#buttonNewTv').click(function () 
     {
@@ -227,12 +228,14 @@ $(document).ready( function () {
     {
         var $btn = $('<button/>', {
             id: deviceType + Index,
-            class: 'buttons'
+            class: 'buttons',
         });
 
         $($btn).html(deviceType + " " + deviceName + " " + Index);
 
         $($btn).on('click', function () {
+            if(Index != deviceIndex)
+            {
             previousIndex = deviceIndex;
             deviceIndex = Index;
             $('#nameTitle').html(deviceName);
@@ -244,6 +247,8 @@ $(document).ready( function () {
             $(deviceList[deviceIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px slategrey'));
             $(deviceList[previousIndex].deviceButton.css('background-color', 'slategrey'));
             $(deviceList[previousIndex].deviceButton.css('box-shadow', '5px 5px 5px 0px coral'));
+            
+        }
 
         });
 
