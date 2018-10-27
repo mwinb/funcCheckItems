@@ -93,7 +93,8 @@ $(document).ready( function () {
                 {
                     oldCode = "0" + oldCode;
                 }
-                currentDevice.setCode(oldCode);    
+                currentDevice.setCode(oldCode);   
+                $('#oldCode').val(""); 
             }
             catch (err) 
             {
