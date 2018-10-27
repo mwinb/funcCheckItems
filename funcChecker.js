@@ -5,6 +5,7 @@ $(document).ready( function () {
     $('#currentDeviceList').hide();
     $('#devices').hide();
     $('#displayCode').hide();
+    $('#createFromCode').hide();
     $('#displayName').hide();
     $('#preDefAcc').hide();
 
@@ -109,6 +110,7 @@ $(document).ready( function () {
     {
         $('#currentDeviceList').show()
         $('#devices').show()
+        $('#createFromCode').show()
         $('#displayCode').show()
         $('#displayName').show()
         $('#preDefAcc').show()

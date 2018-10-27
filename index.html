@@ -25,7 +25,7 @@
 			<input type='text' id='nameInput' placeholder=""/
 		</div>
 
-		<div id='createNewDevice' >
+		<div id='createNewDevice'  >
 			<h3>Choose Device Type</h3>
 			<button id='buttonComputer' class='buttons'>New Computer</button>
 			<button id='buttonTablet' class='buttons'>New Tablet</button>
@@ -40,37 +40,40 @@
 
 		</div>
 
+	</div>
 
-		<div id='createFromCode' >
+	<div id='currenDeviceList' class="border">
+		<div id='devices'>
+			<h1>Current Device</h1>
+		</div>
+	</div>
+
+	<div id='displayName'>
+		<h1> Device Name </h1>
+		<h2 id='nameTitle'></h2>
+	</div>
+
+	<div id='createFromCode' >
                     <h3>Add Pre-Designated Accessory Code</h3>
 			<input type='text' id='oldCode' placeholder=''/>
 			<button id='buttonCode' >Submit Code</button>
 			<h1>
 			</h1>
 
-		</div>
 	</div>
 
-	<div id='currenDeviceList'>
-		<div id='devices'>
-			<h1>Current Devices</h1>
-		</div>
-	</div>
-
-	<div id='displayCode'>
+	<div id='displayCode' class="border">
 		<h2>Current Code</h2>
 		<h3 id='currentCode'></h3>
 	</div>
 
-	<div id='displayName'>
-		<h3> Device Name </h3>
-		<h4 id='nameTitle'></h4>
-	</div>
 
 	<div id='preDefAcc'>
-		<h3>Current Accessories</h3>
+		<h1>Current Accessories</h1>
 		<div id='devicesButtons'class='divList'></div>
 	</div>
+
+	
 
 </body>
 
