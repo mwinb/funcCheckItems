@@ -16,7 +16,11 @@ div {
 
 .border 
 {
-	box-shadow: 10px 10px 5px 0px slategrey;
+	border-bottom-height: 2px;
+	border-left-width: 0px;
+	border-right-width: 0px;
+	border-top-width: 0px;
+	border-color: slategrey;
 }
 
 h1,h2,h3,h4 {
