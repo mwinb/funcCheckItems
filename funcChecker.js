@@ -4,7 +4,7 @@ $(document).ready( function () {
 
     $('#currentDeviceList').hide();
     $('#devices').hide();
-    $('#displayCode').hide();
+    $('.displayCode').hide();
     $('#createFromCode').hide();
     $('#displayName').hide();
     $('#preDefAcc').hide();
@@ -114,7 +114,7 @@ $(document).ready( function () {
         $('#currentDeviceList').show()
         $('#devices').show()
         $('#createFromCode').show()
-        $('#displayCode').show()
+        $('.displayCode').show()
         $('#displayName').show()
         $('#preDefAcc').show()
         $('.border').show();
@@ -221,7 +221,8 @@ $(document).ready( function () {
         var newCode = tempDevice.code;
         var hexCode = parseInt(newCode, 2).toString(16).toUpperCase();
         
-        $('#currentCode').html(hexCode);
+        $('#currentCode1').html(hexCode);
+        $('#currentCode2').html(hexCode);
 
     }
 
@@ -292,7 +293,8 @@ $(document).ready( function () {
             var newCode = tempDevice.getCode();
             var hexCode = parseInt(newCode, 2).toString(16).toUpperCase();
             
-            $('#currentCode').html(hexCode);
+            $('#currentCode1').html(hexCode);
+            $('#currentCode2').html(hexCode);
             
         });
 
