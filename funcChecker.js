@@ -8,6 +8,7 @@ $(document).ready( function () {
     $('#createFromCode').hide();
     $('#displayName').hide();
     $('#preDefAcc').hide();
+    $('.border').hide();
 
     var deviceList = [];
     var currentAccessories = [];
@@ -116,6 +117,7 @@ $(document).ready( function () {
         $('#displayCode').show()
         $('#displayName').show()
         $('#preDefAcc').show()
+        $('.border').show();
 
 
         var buttons = [];
